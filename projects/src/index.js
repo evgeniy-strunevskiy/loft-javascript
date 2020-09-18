@@ -61,7 +61,6 @@ function returnFnResult(fn) {
  */
 
 function returnCounter(num = 0) {
-  // return () => {return num += 1};
   return () => ++num;
 }
 
@@ -74,13 +73,8 @@ function returnCounter(num = 0) {
  Пример:
    returnArgumentsArray(1, 2, 3) вернет [1, 2, 3]
  */
-function returnArgumentsArray() {
-  const array = [];
-  for (let i = 0; i < arguments.length; i++) {
-    array.push(arguments[i]);
-  }
-
-  return array;
+function returnArgumentsArray(...args) {
+  return args;
 }
 /*
  Задание 6 *:
@@ -102,7 +96,7 @@ function returnArgumentsArray() {
 // }
 
 function bindFunction(fn, ...args) {
-  return () => fn(...args);
+  return fn.bind(null, ...args);
 }
 
 export {
