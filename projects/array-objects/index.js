@@ -43,7 +43,7 @@ function map(array, fn) {
  */
 function reduce(array, fn, initial) {
   let acc;
-  if (initial === true) {
+  if (initial) {
     acc = initial;
     for (let i = 0; i < array.length; i++) {
       acc = fn(acc, array[i], i, array);
@@ -65,7 +65,13 @@ function reduce(array, fn, initial) {
  Пример:
    upperProps({ name: 'Сергей', lastName: 'Петров' }) вернет ['NAME', 'LASTNAME']
  */
-function upperProps(obj) {}
+function upperProps(obj) {
+  const array = [];
+  for (const key in obj) {
+    array.push(key.toUpperCase());
+  }
+  return array;
+}
 
 /*
  Задание 5 *:
