@@ -21,7 +21,7 @@ function isAllTrue(array, fn) {
     throw new Error('fn is not a function');
   }
 
-  if (!Array.isArray(array) || !array.length) {
+  if (typeof array !== 'object' || !array.length) {
     throw new Error('empty array');
   }
 
@@ -55,7 +55,7 @@ function isSomeTrue(array, fn) {
     throw new Error('fn is not a function');
   }
 
-  if (!Array.isArray(array) || !array.length) {
+  if (typeof array !== 'object' || !array.length) {
     throw new Error('empty array');
   }
 
@@ -121,42 +121,33 @@ function calculator(number = 0) {
 
   return {
     sum(...args) {
-      let result = number;
-
-      for (const arg of args) {
-        result += arg;
-      }
+      const result = args.reduce((previousValue, currentValue) => {
+        return previousValue + currentValue;
+      }, number);
 
       return result;
     },
     dif(...args) {
-      let result = number;
-
-      for (const arg of args) {
-        result -= arg;
-      }
+      const result = args.reduce((previousValue, currentValue) => {
+        return previousValue - currentValue;
+      }, number);
 
       return result;
     },
     div(...args) {
-      let result = number;
-
-      for (const arg of args) {
-        if (arg === 0) {
+      const result = args.reduce((previousValue, currentValue) => {
+        if (currentValue === 0) {
           throw new Error('division by 0');
         }
-
-        result /= arg;
-      }
+        return previousValue / currentValue;
+      }, number);
 
       return result;
     },
     mul(...args) {
-      let result = number;
-
-      for (const arg of args) {
-        result *= arg;
-      }
+      const result = args.reduce((previousValue, currentValue) => {
+        return previousValue * currentValue;
+      }, number);
 
       return result;
     },
