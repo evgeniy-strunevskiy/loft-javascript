@@ -96,7 +96,13 @@ function findError(where) {
    После выполнения функции, дерево <div></div>привет<p></p>loftchool!!!
    должно быть преобразовано в <div></div><p></p>
  */
-function deleteTextNodes(where) {}
+function deleteTextNodes(where) {
+  for (const node of where.childNodes) {
+    if (node?.nodeType === 3) {
+      node.remove();
+    }
+  }
+}
 
 /*
  Задание 6:
@@ -109,7 +115,19 @@ function deleteTextNodes(where) {}
    После выполнения функции, дерево <span> <div> <b>привет</b> </div> <p>loftchool</p> !!!</span>
    должно быть преобразовано в <span><div><b></b></div><p></p></span>
  */
-function deleteTextNodesRecursive(where) {}
+
+function deleteTextNodesRecursive(where) {
+  for (let i = 0; i < where.childNodes.length; i++) {
+    const el = where.childNodes[i];
+
+    if (el.nodeType === 3) {
+      where.removeChild(el);
+      i--;
+    } else if (el.nodeType === 1) {
+      deleteTextNodesRecursive(el);
+    }
+  }
+}
 
 /*
  Задание 7 *:
