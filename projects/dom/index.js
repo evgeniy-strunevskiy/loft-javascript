@@ -174,7 +174,7 @@ function collectDOMStat(root) {
             stat.classes[className] = 1;
           }
         }
-        if (child.childNodes) {
+        if (child.childNodes.length) {
           scan(child);
         }
       }
