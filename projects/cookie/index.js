@@ -97,8 +97,8 @@ addButton.addEventListener('click', () => {
 listTable.addEventListener('click', (e) => {
   const { role, cookieName } = e.target.dataset;
 
-  const removeCookie = 'remove-cookie';
-  if (role === removeCookie) {
+  const ROLE_DATA = 'remove-cookie';
+  if (role === ROLE_DATA) {
     cookiesMap.delete(cookieName);
     document.cookie = `${cookieName}=deleted; max-age=0`;
     updateTable();
