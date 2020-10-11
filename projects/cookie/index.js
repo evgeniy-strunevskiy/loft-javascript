@@ -97,7 +97,8 @@ addButton.addEventListener('click', () => {
 listTable.addEventListener('click', (e) => {
   const { role, cookieName } = e.target.dataset;
 
-  if (role === 'remove-cookie') {
+  const removeCookie = 'remove-cookie';
+  if (role === removeCookie) {
     cookiesMap.delete(cookieName);
     document.cookie = `${cookieName}=deleted; max-age=0`;
     updateTable();
@@ -106,6 +107,7 @@ listTable.addEventListener('click', (e) => {
 
 function updateTable() {
   const fragment = document.createDocumentFragment();
+  let total = 0;
 
   listTable.innerHTML = '';
 
@@ -117,6 +119,8 @@ function updateTable() {
     ) {
       continue;
     }
+
+    total++;
 
     const tr = document.createElement('tr');
     const nameTD = document.createElement('td');
@@ -137,6 +141,12 @@ function updateTable() {
     removeTD.append(removeButton);
 
     fragment.append(tr);
+  }
+
+  if (total) {
+    listTable.parentNode.classList.remove('hidden');
     listTable.append(fragment);
+  } else {
+    listTable.parentNode.classList.add('hidden');
   }
 }
