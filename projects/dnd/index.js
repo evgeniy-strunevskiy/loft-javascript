@@ -24,5 +24,18 @@ document.addEventListener('mousemove', (e) => {});
 export function createDiv() {}
 
 const addDivButton = homeworkContainer.querySelector('#addDiv');
+//'#' + (Math.random().toString(16) + '000000').substring(2,8).toUpperCase()
 
-addDivButton.addEventListener('click', function () {});
+addDivButton.addEventListener('click', function () {
+  const newDiv = document.createElement('div');
+  const colorDiv = '#' + Math.random().toString(16).substring(2, 8).toUpperCase();
+  newDiv.style.backgroundColor = colorDiv;
+  const numberDiv = Math.random().toString(10).substring(0, 3) + 'px';
+  newDiv.style.width = numberDiv;
+  newDiv.style.height = numberDiv;
+  newDiv.style.position = 'absolute';
+  newDiv.style.top = numberDiv;
+  newDiv.style.left = numberDiv;
+
+  homeworkContainer.appendChild(newDiv);
+});
